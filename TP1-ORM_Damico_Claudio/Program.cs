@@ -48,12 +48,12 @@ namespace TP1_ORM_Presentation
 
                     case "4":
                         Console.Clear();
-                        //VerReservas();
+                        VerListaReservas();
                         break;
 
                     case "5":
                         Console.Clear();
-                        VerLibrosInfo();
+                        VerLibrosEnStock();
                         break;
 
                     case "6":
@@ -71,11 +71,21 @@ namespace TP1_ORM_Presentation
             } while (op != "6");
         }
 
-        static void VerLibrosInfo()
+        static void VerLibrosEnStock()
         {
             var service = new LibrosServices();
             Console.WriteLine("Lista de libros en stock\n");
             service.ListaLibros();
+            Console.WriteLine("\n");
+            Console.WriteLine("Presione enter para continuar y volver al menú principal.");
+            Console.ReadKey();
+        }
+
+        static void VerListaReservas()
+        {
+            var service = new AlquileresServices();
+            Console.WriteLine("Lista de libros reservados\n");
+            service.ListaReservas();
             Console.WriteLine("\n");
             Console.WriteLine("Presione enter para continuar y volver al menú principal.");
             Console.ReadKey();
