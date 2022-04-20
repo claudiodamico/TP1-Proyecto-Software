@@ -9,7 +9,7 @@ namespace TP1_ORM_Services.Services
         {
             using (var _context = new LibreriaDbContext())
             {
-                List<Libro> libros = (from l in _context.Libros where l.Stock > 0 select l).ToList();
+                List<Libro> libros = (from l in _context.Libros where l.Stock > 0 select l).OrderBy(l => l.Titulo).ToList();
                 if (libros.Count == 0)
                 {
                     Console.WriteLine("No hay ejemplares para alquilar.");
