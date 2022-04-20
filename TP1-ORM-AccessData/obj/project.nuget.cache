@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ggnRkUPb7onZ7EAWmZjSW0ban8fwBIk0FeEMWP6Iaam6EJs9oHfSnuGG1Jhk4s9siIGxniQATAyKtQ4N1zq4Rw==",
+  "dgSpecHash": "3rWPMZp5e3JonbrOnCI/XVUErbNdB5XJuKp1UQ1Y5Oa+g8h2w6z8lBP6T2M0Scqpf96XDa1ihX4WBqvgNdAHjQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\casto\\OneDrive\\Documents\\Proyecto Software\\Nueva carpeta\\TP1-ORM-AccessData\\TP1-ORM-AccessData.csproj",
+  "projectFilePath": "C:\\Users\\casto\\OneDrive\\Documents\\Proyecto Software\\TP1-ORM_Damico_Claudio\\TP1-ORM-AccessData\\TP1-ORM-AccessData.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\casto\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\casto\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

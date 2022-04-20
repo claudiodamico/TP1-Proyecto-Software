@@ -1887,11 +1887,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\casto\\OneDrive\\Documents\\Proyecto Software\\Nueva carpeta\\TP1-ORM-Services\\TP1-ORM-Core.csproj",
+      "projectUniqueName": "C:\\Users\\casto\\OneDrive\\Documents\\Proyecto Software\\TP1-ORM_Damico_Claudio\\TP1-ORM-Services\\TP1-ORM-Core.csproj",
       "projectName": "TP1-ORM-Core",
-      "projectPath": "C:\\Users\\casto\\OneDrive\\Documents\\Proyecto Software\\Nueva carpeta\\TP1-ORM-Services\\TP1-ORM-Core.csproj",
+      "projectPath": "C:\\Users\\casto\\OneDrive\\Documents\\Proyecto Software\\TP1-ORM_Damico_Claudio\\TP1-ORM-Services\\TP1-ORM-Core.csproj",
       "packagesPath": "C:\\Users\\casto\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\casto\\OneDrive\\Documents\\Proyecto Software\\Nueva carpeta\\TP1-ORM-Services\\obj\\",
+      "outputPath": "C:\\Users\\casto\\OneDrive\\Documents\\Proyecto Software\\TP1-ORM_Damico_Claudio\\TP1-ORM-Services\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1912,8 +1912,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\casto\\OneDrive\\Documents\\Proyecto Software\\Nueva carpeta\\TP1-ORM-AccessData\\TP1-ORM-AccessData.csproj": {
-              "projectPath": "C:\\Users\\casto\\OneDrive\\Documents\\Proyecto Software\\Nueva carpeta\\TP1-ORM-AccessData\\TP1-ORM-AccessData.csproj"
+            "C:\\Users\\casto\\OneDrive\\Documents\\Proyecto Software\\TP1-ORM_Damico_Claudio\\TP1-ORM-AccessData\\TP1-ORM-AccessData.csproj": {
+              "projectPath": "C:\\Users\\casto\\OneDrive\\Documents\\Proyecto Software\\TP1-ORM_Damico_Claudio\\TP1-ORM-AccessData\\TP1-ORM-AccessData.csproj"
             }
           }
         }

@@ -1,6 +1,4 @@
-﻿
-
-using TP1_ORM_Services.Business;
+﻿using TP1_ORM_Services.Services;
 
 namespace TP1_ORM_Presentation
 {
@@ -33,7 +31,7 @@ namespace TP1_ORM_Presentation
                 {
                     case "1":
                         Console.Clear();
-                        VerLibrosInfo();
+                        //RegistrarCliente();
                         break;
 
                     case "2":
@@ -75,13 +73,10 @@ namespace TP1_ORM_Presentation
 
         static void VerLibrosInfo()
         {
-            LibrosInfo libros = new LibrosInfo();
+            var service = new LibrosServices();
             Console.WriteLine("Lista de libros en stock\n");
-            foreach (var libro in libros.GetLibros())
-            {
-                Console.WriteLine("Libros en el catálogo: \n");
-                Console.WriteLine("- " + libro.Titulo);
-            }
+            service.ListaLibros();
+            Console.WriteLine("Presione enter para continuar y volver al menú principal.");
             Console.ReadKey();
         }
     }
