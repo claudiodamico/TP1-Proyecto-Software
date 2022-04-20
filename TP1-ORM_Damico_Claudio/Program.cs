@@ -76,6 +76,7 @@ namespace TP1_ORM_Presentation
             var service = new LibrosServices();
             Console.WriteLine("Lista de libros en stock\n");
             service.ListaLibros();
+            Console.WriteLine("\n");
             Console.WriteLine("Presione enter para continuar y volver al menú principal.");
             Console.ReadKey();
         }
