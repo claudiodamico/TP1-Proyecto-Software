@@ -1867,11 +1867,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\casto\\OneDrive\\Documents\\Proyecto Software\\Nueva carpeta\\TP1-ORM-AccessData\\TP1-ORM-AccessData.csproj",
+      "projectUniqueName": "C:\\Users\\casto\\OneDrive\\Documents\\Proyecto Software\\TP1-ORM_Damico_Claudio\\TP1-ORM-AccessData\\TP1-ORM-AccessData.csproj",
       "projectName": "TP1-ORM-AccessData",
-      "projectPath": "C:\\Users\\casto\\OneDrive\\Documents\\Proyecto Software\\Nueva carpeta\\TP1-ORM-AccessData\\TP1-ORM-AccessData.csproj",
+      "projectPath": "C:\\Users\\casto\\OneDrive\\Documents\\Proyecto Software\\TP1-ORM_Damico_Claudio\\TP1-ORM-AccessData\\TP1-ORM-AccessData.csproj",
       "packagesPath": "C:\\Users\\casto\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\casto\\OneDrive\\Documents\\Proyecto Software\\Nueva carpeta\\TP1-ORM-AccessData\\obj\\",
+      "outputPath": "C:\\Users\\casto\\OneDrive\\Documents\\Proyecto Software\\TP1-ORM_Damico_Claudio\\TP1-ORM-AccessData\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
