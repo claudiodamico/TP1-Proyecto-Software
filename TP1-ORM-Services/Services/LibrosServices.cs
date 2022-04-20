@@ -17,7 +17,7 @@ namespace TP1_ORM_Services.Services
                 }
                 foreach (var libro in libros)
                 {
-                    Console.WriteLine(libro.Titulo);
+                    Console.WriteLine("Titulo: " + libro.Titulo + " " + "Autor: " + libro.Autor);
                 }
             }
 
