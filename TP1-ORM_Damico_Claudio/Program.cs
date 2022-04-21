@@ -36,13 +36,13 @@ namespace TP1_ORM_Presentation
 
                     case "2":
                         Console.Clear();
-                        //RegistrarAlquiler();
+                        AlquilarLibro();
 
                         break;
 
                     case "3":
                         Console.Clear();
-                        //RegistrarReserva();
+                        ReservarLibro();
 
                         break;
 
@@ -76,6 +76,26 @@ namespace TP1_ORM_Presentation
             var service = new LibrosServices();
             Console.WriteLine("Lista de libros en stock\n");
             service.ListaLibros();
+            Console.WriteLine("\n");
+            Console.WriteLine("Presione enter para continuar y volver al menú principal.");
+            Console.ReadKey();
+        }
+
+        static void AlquilarLibro()
+        {
+            var service = new AlquileresServices();
+            Console.WriteLine("Lista de libros para alquilar\n");
+            service.RegistraAlquiler();
+            Console.WriteLine("\n");
+            Console.WriteLine("Presione enter para continuar y volver al menú principal.");
+            Console.ReadKey();
+        }
+
+        static void ReservarLibro()
+        {
+            var service = new AlquileresServices();
+            Console.WriteLine("Lista de libros para reservar\n");
+            service.ListaReservas();
             Console.WriteLine("\n");
             Console.WriteLine("Presione enter para continuar y volver al menú principal.");
             Console.ReadKey();
