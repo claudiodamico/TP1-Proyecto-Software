@@ -31,7 +31,7 @@ namespace TP1_ORM_Presentation
                 {
                     case "1":
                         Console.Clear();
-                        //RegistrarCliente();
+                        RegistroDeCliente();
                         break;
 
                     case "2":
@@ -86,6 +86,16 @@ namespace TP1_ORM_Presentation
             var service = new AlquileresServices();
             Console.WriteLine("Lista de libros reservados\n");
             service.ListaReservas();
+            Console.WriteLine("\n");
+            Console.WriteLine("Presione enter para continuar y volver al menú principal.");
+            Console.ReadKey();
+        }
+
+        static void RegistroDeCliente()
+        {
+            var service = new ClientesServices();
+            Console.WriteLine("Registrece en el sistema");
+            service.RegistraCliente();
             Console.WriteLine("\n");
             Console.WriteLine("Presione enter para continuar y volver al menú principal.");
             Console.ReadKey();
