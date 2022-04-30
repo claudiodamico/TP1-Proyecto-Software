@@ -5,6 +5,7 @@ namespace TP1_ORM_Services.Services
 {
     public class LibrosServices
     {
+        //Listamos los libros 
         public void ListaLibros()
         {
             using (var _context = new LibreriaDbContext())
@@ -17,12 +18,12 @@ namespace TP1_ORM_Services.Services
                 }
                 foreach (var libro in libros)
                 {
-                    Console.WriteLine("Titulo: " + libro.Titulo + " " + "Autor: " + libro.Autor);
+                    Console.WriteLine("Titulo: " + libro.Titulo + " " + "Autor: " + libro.Autor + " " + "ISBN: " + " " + libro.ISBN);
                 }
             }
 
         }
-
+        //Verificamos si hay stock
         public bool HayStock(string ISBN)
         {
             using (var _context = new LibreriaDbContext())
@@ -35,15 +36,30 @@ namespace TP1_ORM_Services.Services
             }
             return false;
         }
-
+        //Restamos al stock
         public void RestarStock(string ISBN)
         {
             using (var _context = new LibreriaDbContext())
             {
                 Libro libro = (from l in _context.Libros where l.ISBN == ISBN select l).FirstOrDefault();
-                libro.Stock = -1;
+                libro.Stock -= 1;
                 _context.SaveChanges();
             }
+        }
+        //Validamos existencia de libro
+        public string ValidarLibro(string Isbn)
+        {
+            using (var _context = new LibreriaDbContext())
+            {
+                var libro = _context.Libros.Find(Isbn);
+                return libro.ToString();
+            }
+        }
+
+        public string DetalleLibro(Libro libro)
+        {
+            return libro.ISBN + " " +
+                   libro.Autor;    
         }
     }
 }

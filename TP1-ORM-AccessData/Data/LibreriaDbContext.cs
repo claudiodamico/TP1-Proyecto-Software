@@ -81,7 +81,7 @@ namespace TP1_ORM_AccessData.Data
 
                 entity.Property(e => e.FechaReserva).HasColumnType("date");
 
-                entity.Property(e => e.Isbn)
+                entity.Property(e => e.ISBN)
                     .HasMaxLength(50)
                     .HasColumnName("ISBN");
 
@@ -95,7 +95,7 @@ namespace TP1_ORM_AccessData.Data
 
                 entity.HasOne(d => d.IsbnNavigation)
                     .WithMany(p => p.Alquileres)
-                    .HasForeignKey(d => d.Isbn);
+                    .HasForeignKey(d => d.ISBN);
             });
 
             //INSERTS

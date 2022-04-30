@@ -30,10 +30,10 @@ namespace TP1_ORM_AccessData.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("Cliente")
+                    b.Property<int>("Cliente")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Estado")
+                    b.Property<int>("Estado")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("FechaAlquiler")
@@ -45,7 +45,8 @@ namespace TP1_ORM_AccessData.Migrations
                     b.Property<DateTime?>("FechaReserva")
                         .HasColumnType("date");
 
-                    b.Property<string>("Isbn")
+                    b.Property<string>("ISBN")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("ISBN");
@@ -56,7 +57,7 @@ namespace TP1_ORM_AccessData.Migrations
 
                     b.HasIndex("Estado");
 
-                    b.HasIndex("Isbn");
+                    b.HasIndex("ISBN");
 
                     b.ToTable("Alquileres");
                 });
@@ -70,19 +71,23 @@ namespace TP1_ORM_AccessData.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClienteId"), 1L, 1);
 
                     b.Property<string>("Apellido")
+                        .IsRequired()
                         .HasMaxLength(45)
                         .HasColumnType("nvarchar(45)");
 
                     b.Property<string>("Dni")
+                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)")
                         .HasColumnName("DNI");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasMaxLength(45)
                         .HasColumnType("nvarchar(45)");
 
                     b.Property<string>("Nombre")
+                        .IsRequired()
                         .HasMaxLength(45)
                         .HasColumnType("nvarchar(45)");
 
@@ -100,6 +105,7 @@ namespace TP1_ORM_AccessData.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EstadoId"), 1L, 1);
 
                     b.Property<string>("Descripcion")
+                        .IsRequired()
                         .HasMaxLength(45)
                         .HasColumnType("nvarchar(45)");
 
@@ -271,15 +277,21 @@ namespace TP1_ORM_AccessData.Migrations
                 {
                     b.HasOne("TP1_ORM_AccessData.Entities.Cliente", "ClienteNavigation")
                         .WithMany("Alquileres")
-                        .HasForeignKey("Cliente");
+                        .HasForeignKey("Cliente")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("TP1_ORM_AccessData.Entities.EstadoDeAlquiler", "EstadoNavigation")
                         .WithMany("Alquileres")
-                        .HasForeignKey("Estado");
+                        .HasForeignKey("Estado")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("TP1_ORM_AccessData.Entities.Libro", "IsbnNavigation")
                         .WithMany("Alquileres")
-                        .HasForeignKey("Isbn");
+                        .HasForeignKey("ISBN")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ClienteNavigation");
 
