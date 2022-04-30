@@ -4,12 +4,15 @@ namespace TP1_ORM_Services.Business
 {
     public class LibrosBusiness
     {
+        private readonly LibrosServices _services;
+
+        public LibrosBusiness(LibrosServices services)
+        {
+            _services = services;
+        }
         public void ListarLibros()
         {
-            LibrosServices libros = new LibrosServices();
-
-            libros.ListaLibros();
-
+            _services.ListaLibros();
         }
     }
 }

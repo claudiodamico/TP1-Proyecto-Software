@@ -95,7 +95,7 @@ namespace TP1_ORM_Presentation
         {
             var service = new AlquileresServices();
             Console.WriteLine("Lista de libros para reservar\n");
-            service.ListaReservas();
+            service.RegistraReserva();
             Console.WriteLine("\n");
             Console.WriteLine("Presione enter para continuar y volver al menú principal.");
             Console.ReadKey();

@@ -15,10 +15,10 @@ namespace TP1_ORM_AccessData.Migrations
                 {
                     ClienteId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DNI = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
-                    Nombre = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: true),
-                    Apellido = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: true)
+                    DNI = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    Nombre = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: false),
+                    Apellido = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -31,7 +31,7 @@ namespace TP1_ORM_AccessData.Migrations
                 {
                     EstadoId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Descripcion = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: true)
+                    Descripcion = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -61,9 +61,9 @@ namespace TP1_ORM_AccessData.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Cliente = table.Column<int>(type: "int", nullable: true),
-                    ISBN = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Estado = table.Column<int>(type: "int", nullable: true),
+                    Cliente = table.Column<int>(type: "int", nullable: false),
+                    ISBN = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Estado = table.Column<int>(type: "int", nullable: false),
                     FechaAlquiler = table.Column<DateTime>(type: "date", nullable: true),
                     FechaReserva = table.Column<DateTime>(type: "date", nullable: true),
                     FechaDevolucion = table.Column<DateTime>(type: "date", nullable: true)
@@ -75,17 +75,20 @@ namespace TP1_ORM_AccessData.Migrations
                         name: "FK_Alquileres_Cliente_Cliente",
                         column: x => x.Cliente,
                         principalTable: "Cliente",
-                        principalColumn: "ClienteId");
+                        principalColumn: "ClienteId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Alquileres_EstadoDeAlquileres_Estado",
                         column: x => x.Estado,
                         principalTable: "EstadoDeAlquileres",
-                        principalColumn: "EstadoId");
+                        principalColumn: "EstadoId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Alquileres_Libros_ISBN",
                         column: x => x.ISBN,
                         principalTable: "Libros",
-                        principalColumn: "ISBN");
+                        principalColumn: "ISBN",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(

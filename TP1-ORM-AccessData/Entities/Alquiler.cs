@@ -9,9 +9,9 @@ namespace TP1_ORM_AccessData.Entities
     public class Alquiler
     {
         public int Id { get; set; }
-        public int? Cliente { get; set; }
-        public string Isbn { get; set; }
-        public int? Estado { get; set; }
+        public int Cliente { get; set; }
+        public string ISBN { get; set; }
+        public int Estado { get; set; }
         public DateTime? FechaAlquiler { get; set; }
         public DateTime? FechaReserva { get; set; }
         public DateTime? FechaDevolucion { get; set; }
