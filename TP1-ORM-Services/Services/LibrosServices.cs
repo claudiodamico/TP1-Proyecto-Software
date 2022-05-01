@@ -46,20 +46,6 @@ namespace TP1_ORM_Services.Services
                 _context.SaveChanges();
             }
         }
-        //Validamos existencia de libro
-        public string ValidarLibro(string Isbn)
-        {
-            using (var _context = new LibreriaDbContext())
-            {
-                var libro = _context.Libros.Find(Isbn);
-                return libro.ToString();
-            }
-        }
-
-        public string DetalleLibro(Libro libro)
-        {
-            return libro.ISBN + " " +
-                   libro.Autor;    
-        }
+        
     }
 }
