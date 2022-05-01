@@ -30,38 +30,46 @@ namespace TP1_ORM_Services.Services
         ////Registramos un cliente
         public void RegistraCliente()
         {
-            Console.WriteLine("Ingrese su Nombre: ");
-            string Nombre = Console.ReadLine();
-
-            Console.WriteLine("Ingrese su Apellido: ");
-            string Apellido = Console.ReadLine();
-
-            Console.WriteLine("Ingrese su Dni: ");
-            string dni = Console.ReadLine();
-            var cliente = GetCliente(dni);
-            //Validamos si el cliente existe en nuestra aplicacion
-            if (cliente !=null)
+            try
             {
-                Console.WriteLine("El cliente ya esta registrado" + "\n" +
-                                   "Presione enter para continuar y volver al menú principal.");
+                Console.WriteLine("Ingrese su Nombre: ");
+                string Nombre = Console.ReadLine();
+
+                Console.WriteLine("Ingrese su Apellido: ");
+                string Apellido = Console.ReadLine();
+
+                Console.WriteLine("Ingrese su Dni: ");
+                string dni = Console.ReadLine();
+                var cliente = GetCliente(dni);
+                //Validamos si el cliente existe en nuestra aplicacion
+                if (cliente != null)
+                {
+                    Console.WriteLine("El cliente ya esta registrado" + "\n" +
+                                       "Presione enter para continuar y volver al menú principal.");
+                    Console.ReadKey();
+                    return;
+                }
+                Console.WriteLine("Ingrese su Email");
+                string Email = Console.ReadLine();
+                //Registro de cliente
+                Registrar(new Cliente
+                {
+                    Nombre = Nombre,
+                    Apellido = Apellido,
+                    Dni = dni,
+                    Email = Email
+                });
+
+                Console.WriteLine("El cliente se registro exitosamente!" + "\n" +
+                                  "Presione enter para continuar y volver al menú principal.");
                 Console.ReadKey();
-                return;
             }
-
-            Console.WriteLine("Ingrese su Email");
-            string Email = Console.ReadLine();
-            //Registro de cliente
-            Registrar(new Cliente
+            catch (Exception ex)
             {
-                Nombre = Nombre,
-                Apellido = Apellido,
-                Dni = dni,
-                Email = Email
-            });
-
-            Console.WriteLine("El cliente se registro exitosamente!" + "\n" + 
-                              "Presione enter para continuar y volver al menú principal.");
-            Console.ReadKey();
+                Console.WriteLine("error");
+            }
+            
         }
+        
     }
 }

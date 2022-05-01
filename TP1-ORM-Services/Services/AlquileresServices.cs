@@ -1,24 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
-using TP1_ORM_AccessData.Data;
+﻿using TP1_ORM_AccessData.Data;
 using TP1_ORM_AccessData.Entities;
+using TP1_ORM_Services.Validations;
 
 namespace TP1_ORM_Services.Services
 {
     public class AlquileresServices
     {
-        //Validamos si hay stock existente
-        public bool ValidarStock(string Isbn)
-        {
-            using (var _context = new LibreriaDbContext())
-            {
-                int stock = (from s in _context.Libros where s.ISBN == Isbn select s.Stock).FirstOrDefault();
-                if (stock > 0)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
         //Listamos las reservas existentes
         public void ListaReservas()
         {
@@ -57,13 +44,14 @@ namespace TP1_ORM_Services.Services
         //Registamos un alquiler
         public void RegistraAlquiler()
         {
+            Validate validate= new Validate();
             LibrosServices libros = new LibrosServices();
             ClientesServices clientes = new ClientesServices();
             libros.ListaLibros();
             Console.WriteLine("Ingrese Isbn del libro");
             string Isbn = Console.ReadLine();
             //Validamos si hay existencias del libro
-            var libro = libros.ValidarLibro(Isbn);
+            var libro = validate.ValidarLibro(Isbn);
             if (libro == null)
             {
                 Console.WriteLine("El libro solicitado no se encuentra en el catalogo.\n" +
@@ -112,56 +100,64 @@ namespace TP1_ORM_Services.Services
         //Registramos una reserva
         public void RegistraReserva()
         {
-            LibrosServices libros = new LibrosServices();
-            ClientesServices clientes = new ClientesServices();
-            libros.ListaLibros();
-            Console.WriteLine("Ingrese Isbn del libro");
-            string Isbn = Console.ReadLine();
-            //Validamos si hay existencias del libro
-            var libro = libros.ValidarLibro(Isbn);
-            if (libro == null)
+            try
             {
-                Console.WriteLine("El libro solicitado no se encuentra en el catalogo.\n" +
-                                  "Presione una tecla para volver al menú principal.");
-                Console.ReadKey();
-                return;
-            }
-            if (!libros.HayStock(Isbn))
-            {
-                Console.WriteLine("El libro solicitado no se encuentra en Stock.\n" +
-                                  "Presione una tecla para volver al menú principal.");
-                Console.ReadKey();
-                return;
-            }
-
-            Console.WriteLine("Ingrese Dni");
-            int dni = int.Parse(Console.ReadLine());
-            //Validamos si el cliente existe en nuestra aplicacion
-            Cliente cliente = clientes.GetCliente(dni);
-            if (cliente == null)
-            {
-                Console.WriteLine("El cliente no está registrado.\n" +
-                                  "Por favor registrese en la opcion 1- registrar cliente.\n" +
-                                  "Presione una tecla para volver al menú principal.");
-                Console.ReadKey();
-                return;
-            }
-            else
-            {
-                Alquiler alquiler = new Alquiler
+                Validate validate = new Validate();
+                LibrosServices libros = new LibrosServices();
+                ClientesServices clientes = new ClientesServices();
+                libros.ListaLibros();
+                Console.WriteLine("Ingrese Isbn del libro");
+                string Isbn = Console.ReadLine();
+                //Validamos si hay existencias del libro
+                var libro = validate.ValidarLibro(Isbn);
+                if (libro == null)
                 {
-                    Cliente = cliente.ClienteId,
-                    ISBN = Isbn,
-                    Estado = 1,
-                    FechaReserva = DateTime.Now
-                };
-                //Restamos al stock y registramos la reserva
-                libros.RestarStock(Isbn);
-                Registrar(alquiler);
-                Console.WriteLine("Se realizó el alquiler exitosamente!" + "\n" +
-                                  "Presione una tecla para volver al menú principal.");
-                Console.ReadKey();
+                    Console.WriteLine("El libro solicitado no se encuentra en el catalogo.\n" +
+                                      "Presione una tecla para volver al menú principal.");
+                    Console.ReadKey();
+                    return;
+                }
+                if (!libros.HayStock(Isbn))
+                {
+                    Console.WriteLine("El libro solicitado no se encuentra en Stock.\n" +
+                                      "Presione una tecla para volver al menú principal.");
+                    Console.ReadKey();
+                    return;
+                }
+
+                Console.WriteLine("Ingrese Dni");
+                int dni = int.Parse(Console.ReadLine());
+                //Validamos si el cliente existe en nuestra aplicacion
+                Cliente cliente = clientes.GetCliente(dni);
+                if (cliente == null)
+                {
+                    Console.WriteLine("El cliente no está registrado.\n" +
+                                      "Por favor registrese en la opcion 1- registrar cliente.\n" +
+                                      "Presione una tecla para volver al menú principal.");
+                    Console.ReadKey();
+                    return;
+                }
+                else
+                {
+                    Alquiler alquiler = new Alquiler
+                    {
+                        Cliente = cliente.ClienteId,
+                        ISBN = Isbn,
+                        Estado = 1,
+                        FechaReserva = DateTime.Now
+                    };
+                    //Restamos al stock y registramos la reserva
+                    libros.RestarStock(Isbn);
+                    Registrar(alquiler);
+                    Console.WriteLine("Se realizó la reserva exitosamente!" + "\n" +
+                                      "Presione una tecla para volver al menú principal.");
+                    Console.ReadKey();
+                }
+            }catch (Exception ex)
+            {
+                Console.WriteLine("error");
             }
+            
         }
     }
 }
