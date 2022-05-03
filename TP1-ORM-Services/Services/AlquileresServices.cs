@@ -6,7 +6,16 @@ namespace TP1_ORM_Services.Services
 {
     public class AlquileresServices
     {
-        //Listamos las reservas existentes
+        private readonly Validate _validate;
+        private readonly LibrosServices _librosService;
+        private readonly ClientesServices _clientesService;
+
+        public AlquileresServices()
+        {
+            _validate = new Validate();
+            _librosService = new LibrosServices();
+            _clientesService = new ClientesServices();
+        }
         public void ListaReservas()
         {
             using (var _context = new LibreriaDbContext())
@@ -32,7 +41,7 @@ namespace TP1_ORM_Services.Services
                 }
             }          
         }
-        //Agergamos el alquiler en la db
+
         public void Registrar(Alquiler alquiler)
         {
             using (var _context = new LibreriaDbContext())
@@ -41,17 +50,14 @@ namespace TP1_ORM_Services.Services
                 _context.SaveChanges();
             }
         }
-        //Registamos un alquiler
+
         public void RegistraAlquiler()
         {
-            Validate validate= new Validate();
-            LibrosServices libros = new LibrosServices();
-            ClientesServices clientes = new ClientesServices();
-            libros.ListaLibros();
+            _librosService.ListaLibros();
             Console.WriteLine("Ingrese Isbn del libro");
             string Isbn = Console.ReadLine();
-            //Validamos si hay existencias del libro
-            var libro = validate.ValidarLibro(Isbn);
+
+            var libro = _validate.ValidarLibro(Isbn);
             if (libro == null)
             {
                 Console.WriteLine("El libro solicitado no se encuentra en el catalogo.\n" +
@@ -59,7 +65,7 @@ namespace TP1_ORM_Services.Services
                 Console.ReadKey();
                 return;
             }
-            if (!libros.HayStock(Isbn))
+            if (!_librosService.HayStock(Isbn))
             {
                 Console.WriteLine("El libro solicitado no se encuentra en Stock.\n" +
                                   "Presione una tecla para volver al menú principal.");
@@ -69,8 +75,8 @@ namespace TP1_ORM_Services.Services
 
             Console.WriteLine("Ingrese Dni");
             int dni = int.Parse(Console.ReadLine());
-            var cliente = clientes.GetCliente(dni);
-            //Validamos si el cliente existe en nuestra aplicacion
+            var cliente = _clientesService.GetCliente(dni);
+
             if (cliente == null)
             {
                 Console.WriteLine("El cliente no está registrado.\n" +
@@ -89,27 +95,24 @@ namespace TP1_ORM_Services.Services
                     FechaAlquiler = DateTime.Now,
                     FechaDevolucion = DateTime.Now.AddDays(7)
                 };
-                //Restamos al stock y registramos el alquiler
-                libros.RestarStock(Isbn);
+
+                _librosService.RestarStock(Isbn);
                 Registrar(alquiler);
                 Console.WriteLine("Se realizó el alquiler exitosamente!" + "\n" +
                                   "Presione una tecla para volver al menú principal.");
                 Console.ReadKey();
             }
         }
-        //Registramos una reserva
+
         public void RegistraReserva()
         {
             try
             {
-                Validate validate = new Validate();
-                LibrosServices libros = new LibrosServices();
-                ClientesServices clientes = new ClientesServices();
-                libros.ListaLibros();
+                _librosService.ListaLibros();
                 Console.WriteLine("Ingrese Isbn del libro");
                 string Isbn = Console.ReadLine();
-                //Validamos si hay existencias del libro
-                var libro = validate.ValidarLibro(Isbn);
+
+                var libro = _validate.ValidarLibro(Isbn);
                 if (libro == null)
                 {
                     Console.WriteLine("El libro solicitado no se encuentra en el catalogo.\n" +
@@ -117,7 +120,7 @@ namespace TP1_ORM_Services.Services
                     Console.ReadKey();
                     return;
                 }
-                if (!libros.HayStock(Isbn))
+                if (!_librosService.HayStock(Isbn))
                 {
                     Console.WriteLine("El libro solicitado no se encuentra en Stock.\n" +
                                       "Presione una tecla para volver al menú principal.");
@@ -127,8 +130,8 @@ namespace TP1_ORM_Services.Services
 
                 Console.WriteLine("Ingrese Dni");
                 int dni = int.Parse(Console.ReadLine());
-                //Validamos si el cliente existe en nuestra aplicacion
-                Cliente cliente = clientes.GetCliente(dni);
+
+                Cliente cliente = _clientesService.GetCliente(dni);
                 if (cliente == null)
                 {
                     Console.WriteLine("El cliente no está registrado.\n" +
@@ -146,8 +149,8 @@ namespace TP1_ORM_Services.Services
                         Estado = 1,
                         FechaReserva = DateTime.Now
                     };
-                    //Restamos al stock y registramos la reserva
-                    libros.RestarStock(Isbn);
+
+                    _librosService.RestarStock(Isbn);
                     Registrar(alquiler);
                     Console.WriteLine("Se realizó la reserva exitosamente!" + "\n" +
                                       "Presione una tecla para volver al menú principal.");

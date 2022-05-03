@@ -5,7 +5,6 @@ namespace TP1_ORM_Services.Services
 {
     public class LibrosServices
     {
-        //Listamos los libros 
         public void ListaLibros()
         {
             using (var _context = new LibreriaDbContext())
@@ -23,7 +22,7 @@ namespace TP1_ORM_Services.Services
             }
 
         }
-        //Verificamos si hay stock
+
         public bool HayStock(string ISBN)
         {
             using (var _context = new LibreriaDbContext())
@@ -36,7 +35,7 @@ namespace TP1_ORM_Services.Services
             }
             return false;
         }
-        //Restamos al stock
+
         public void RestarStock(string ISBN)
         {
             using (var _context = new LibreriaDbContext())
