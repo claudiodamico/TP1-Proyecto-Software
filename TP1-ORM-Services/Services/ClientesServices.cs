@@ -5,7 +5,6 @@ namespace TP1_ORM_Services.Services
 {
     public class ClientesServices
     {
-        //Validamos si existe el cliente
         public Cliente GetCliente(string dni)
         {
             using (var _context = new LibreriaDbContext())
@@ -13,7 +12,6 @@ namespace TP1_ORM_Services.Services
                 return _context.Clientes.FirstOrDefault(x => x.Dni == dni);
             }
         }
-        //Validamos clientes por dni
         public Cliente GetCliente(int dni)
         {
             return GetCliente(dni.ToString());
@@ -27,7 +25,6 @@ namespace TP1_ORM_Services.Services
                 _context.SaveChanges();
             }
         }
-        ////Registramos un cliente
         public void RegistraCliente()
         {
             try
@@ -41,7 +38,7 @@ namespace TP1_ORM_Services.Services
                 Console.WriteLine("Ingrese su Dni: ");
                 string dni = Console.ReadLine();
                 var cliente = GetCliente(dni);
-                //Validamos si el cliente existe en nuestra aplicacion
+
                 if (cliente != null)
                 {
                     Console.WriteLine("El cliente ya esta registrado" + "\n" +
@@ -51,7 +48,7 @@ namespace TP1_ORM_Services.Services
                 }
                 Console.WriteLine("Ingrese su Email");
                 string Email = Console.ReadLine();
-                //Registro de cliente
+
                 Registrar(new Cliente
                 {
                     Nombre = Nombre,
